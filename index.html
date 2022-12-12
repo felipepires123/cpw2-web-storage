@@ -14,19 +14,17 @@
     <input type="color" id="color" onblur="changeColor()" />
     <br />
     <label for="font">Fonte do título do fundo: </label>
-    <!--
-      1 - Implemente um HTML select para trocar a fonte do texto Web Storage que, nesse projeto,
-      está contido em um parágrafo. Algumas regras devem ser observadas:
 
-        * O Identificador do HTML select (id) deve ser igual a "font"
-
-        * As opções do HTML select devem ser: Arial, Monaco e Bradley Hand
-    -->
+    <select name="font" id="font" onchange="changeFont()">
+      <option value="null" selected>ESCOLHA A FONTE</opition>
+      <option value="Arial">Arial</option>
+      <option value="Monaco">Monaco</option>
+      <option value="Baskerville">Baskerville</option>
+    </select>
+   
 
     <script>
-      /**
-       * Troca a cor do fundo da página
-       */
+     
       function changeColor() {
         let inputColor = document.getElementById("color");
         document.body.style.backgroundColor = inputColor.value;
@@ -34,27 +32,31 @@
         localStorage.setItem("color", inputColor.value);
       }
 
-      /**
-       * Troca a fonte do elemento onde o id é "text"
-       */
+      
       function changeFont() {
         /**
          * 2 - Implemente o corpo do método `changeFont`. Este método deve ser capaz
          * de trocar a fonte do texto `Web Storage` e também salvar o valor
          * escolhido no no local *localStorage* sempre que o usuário selecionar
          * o tipo da fonte por meio do HTML select.
+         *
          */
+        let imput = document.getElementById("font")
+        let title = document.getElementById("text")
+        title.style.fontFamily = imput.value
+        localStorage.setItem("font", imput.value)
+        
+        
+        
       }
 
-      /**
-       * Inicializa o localStorage
-       */
+      
       function load() {
-        document.body.style.backgroundColor = localStorage.getItem("color");
-        /**
-         * 3 - Altere o método `load` para recuperar o nome da fonte do *localStorage* e
-         * estilizar o texto `Web Storage`
-         */
+        document.body.style.backgroundColor = localStorage.getItem("color");  
+        let p = document.getElementById("text");
+        p.style.fontFamily = localStorage.getItem("font");
+
+        
       }
     </script>
   </body>
